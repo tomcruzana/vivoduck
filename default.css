@@ -1,5 +1,6 @@
 #barcodeLabel
 {
+  margin: auto;
   height:380px;
   width:520px;
   border: 1px solid black;

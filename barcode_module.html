@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>barcode module</title>
+  <link rel="stylesheet" href="default.css">
+  <script type="text/javascript" src="JsBarcode.all.min.js"></script>
+</head>
+
+<body>
+	<div id="barcodeLabel">
+		
+		<svg id="TerminalInformation"></svg>
+		
+		<svg id="ClientInformation"></svg>
+		
+		<svg id="SerialNumber"></svg>
+		
+		<svg id="MACaddress"></svg>
+		
+		<svg id="SOnumber"></svg>
+	</div>
+	
+	
+	<script>
+	//The HTML 5 draft specification loosens up the rules for the id and name attributes: they are now just opaque strings which cannot contain spaces
+	for(i = 0; i < 5; i++)
+	{
+	
+	var idArray = ["#TerminalInformation","#ClientInformation","#SerialNumber","#MACaddress","#SOnumber"]
+	//var text2Convert = document.getElementsByTagName("h1")[i].textContent; //this is the text source of the barcodes
+	var text2Convert = document.getElementsByTagName("svg")[i].getAttribute("id");
+	JsBarcode(idArray[i], text2Convert, 
+		{
+		  format: "CODE128",
+		  lineColor: "#000",
+		  font: "verdana",
+		  textPosition: "top",
+		  textMargin: 4,
+		  width: 1.5,
+		  height: 40,
+		  displayValue: true,
+		  margin: 0,
+		  marginTop: 10
+		  
+		}); //function call with args
+	}
+</script>
+</body>
+</html>

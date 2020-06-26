@@ -1,0 +1,176 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://use.fontawesome.com/f7b31785d6.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+
+    <link rel="stylesheet" href="../styles/default.css"/>
+    <link rel="stylesheet" href="../styles/print.css">
+
+    <title>Document</title>
+</head>
+<body>
+  
+    <div class="header">
+    <i class="fa fa-user-circle" aria-hidden="true"></i>
+    Vivoduck v2
+    </div>
+
+    <div class="container">
+    <a href="https://docs.google.com/spreadsheets/d/1Au51cENUnyedN8djQGNlRFQOJBUvdhKVE4iUYOuV9MQ/edit#gid=0" class="gsdoc" target="_blank"><i class="fa fa-file-text" aria-hidden="true"></i> Access the Google sheet document</a>
+    <hr/>
+              <div class="fetchers">
+                <label for="row_range">Row</label>
+                <input type="number" id="row_range" name="row_txt" placeholder="Row number.." min="1" max="999999" >
+                <input id="fetch_button" type="button" value="Fetch" >
+              </div>
+          <hr/>
+
+        <form id="myForm">
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="location">Location</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="location" name="location_txt" placeholder="The location.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="machineinfo">Machine Information</label>
+            </div>
+            <div class="col-75">
+              <input class="clear" type="text" id="machineinfo" name="machineInfo_txt" placeholder="The machine info.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="vivonetpo">Vivonet PO</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="vivonetpo" name="vivonetPO_txt" placeholder="Vivonet purchase order.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="scordernumber">ScanSource Order</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="scordernumber" name="ScOrderNumber_txt" placeholder="ScanSource order number.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="scpo">ScanSource PO</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="scpo" name="ScPO_txt" placeholder="ScanSource purchase order.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="trackinginfo">Tracking Number</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="trackinginfo" name="trackingInfo_txt" placeholder="The tracking information.." required="required">
+            </div>
+          </div>
+          
+           <div class="row">
+            <div class="col-25">
+              <label for="remarks">Remarks</label>
+            </div>
+            <div class="col-75">
+              <select id="remarks" name="remarks_txt">
+                <option value="staging">Staging</option>
+                <option value="nonstaging">Non Staging</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="serials">Serials</label>
+            </div>
+            <div class="col-75">
+              <input class="clear" type="text" id="serials" name="serials_txt" placeholder="Enter the terminal serial number.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="cdserials">CD Serials</label>
+            </div>
+            <div class="col-75">
+              <input class="clear" type="text" id="cdserials" name="cdSerials_txt" placeholder="Enter the cash drawer serial number.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="macadress">MAC Address</label>
+            </div>
+            <div class="col-75">
+              <input class="clear" type="text" id="macadress" name="macAddress_txt" placeholder="Enter the MAC adress of the terminal.." required="required">
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-25">
+              <label for="so">S.O.</label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="so" name="SO_txt" placeholder="The sales order number.." required="required">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25"></div>
+              <input id="update_button" type="submit" value="Update" > <!--invokes the getCannedResponse method first-->
+              <input id="reset_button" type="button" value="Reset" >
+          </div>       
+         
+        </form>
+		
+		<div class="row">
+            <div class="col-25">
+              <label for="Canned">Canned Response</label>
+            </div>
+            <div class="col-75">
+              <textarea id="cannedResponse_txt" name="Canned" placeholder="Write something.." style="height:200px"></textarea>
+            </div>
+          </div>
+		  
+		<div class="row">
+            <input type="button" onclick="copyToClipBoard()" value="Copy" ><!--Copies the texts to clipboard-->
+          </div>
+		  
+          <div class="row">
+            <button id="printer"><i class="fa fa-print fa-1x"></i> Print Label</button> <!--Generate the print preview of the label-->
+          </div>
+        
+      </div>
+      
+    <div id="label-popup">
+        <img id="location-label"/> <br>
+        <img id="machine-info-label"/> <br>
+        <img id="vivonet-po"/> <br>
+        <img id="serial-label"/> <br>
+        <img id="mac-label"/> <br>
+        <img id="so-label"/> <br>
+    </div>
+    <div>&nbsp;</div>
+
+    <script src="../scripts/formUpdater.js"></script>
+    <script src="../scripts/cannedResponseGenerator.js"></script>
+    <script src="../scripts/barcodeGenerator.js"></script>
+      
+</body>
+</html>

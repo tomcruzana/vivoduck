@@ -1,0 +1,12 @@
+@media print {
+    .container{
+        display: none;
+    }
+
+    #label-popup{
+        color: #000000;
+        border: none;
+        box-shadow: none;
+        width: auto;
+    }
+  }

@@ -9,3 +9,5 @@ console.log(stdout);
 process.exit(0);// exit process once it is opened
 });
 
+module.exports = childProcess;
+

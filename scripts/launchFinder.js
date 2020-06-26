@@ -1,6 +1,6 @@
 const childProcess = require('child_process');
 
-childProcess.exec('labelFinder.txt', function (err, stdout, stderr) {
+childProcess.exec('labelFinder.exe', function (err, stdout, stderr) { //lauch java app
     if (err) {
     console.error(err);
     return;

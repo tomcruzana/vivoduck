@@ -17,5 +17,9 @@ app.get("/", (req, res)=>{
 	res.render("index");
 });
 
+app.get("*", (req, res)=>{ //404
+	res.send("<h1>Invalid URL</h1>")
+});
+
 //port of the server
 app.listen(9000); 

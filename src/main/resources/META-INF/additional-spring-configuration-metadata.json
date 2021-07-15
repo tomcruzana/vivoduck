@@ -1,0 +1,42 @@
+{"properties": [
+  {
+    "name": "Order.ORDER_NOT_FOUND",
+    "type": "java.lang.String",
+    "description": "A description for 'Order.ORDER_NOT_FOUND'"
+  },
+  {
+    "name": "Order.ORDER_NOT_FOUND",
+    "type": "java.lang.String",
+    "description": "A description for 'Order.ORDER_NOT_FOUND'"
+  },
+  {
+    "name": "Order.ORDER_NOT_FOUND",
+    "type": "java.lang.String",
+    "description": "A description for 'Order.ORDER_NOT_FOUND'"
+  },
+  {
+    "name": "Order.ORDER_NOT_FOUND",
+    "type": "java.lang.String",
+    "description": "A description for 'Order.ORDER_NOT_FOUND'"
+  },
+  {
+    "name": "API.INSERT_SUCCESS",
+    "type": "java.lang.String",
+    "description": "A description for 'API.INSERT_SUCCESS'"
+  },
+  {
+    "name": "General.EXCEPTION_MESSAGE",
+    "type": "java.lang.String",
+    "description": "A description for 'General.EXCEPTION_MESSAGE'"
+  },
+  {
+    "name": "API.UPDATE_SUCCESS",
+    "type": "java.lang.String",
+    "description": "A description for 'API.UPDATE_SUCCESS'"
+  },
+  {
+    "name": "API.DELETE_SUCCESS",
+    "type": "java.lang.String",
+    "description": "A description for 'API.DELETE_SUCCESS'"
+  }
+]}

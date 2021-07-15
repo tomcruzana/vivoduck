@@ -9,9 +9,12 @@ import com.vivoduck.entity.Remark;
 import com.vivoduck.exception.VivoduckException;
 import com.vivoduck.repository.OrderRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 @Transactional
@@ -20,6 +23,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderRepository orderRepository;
+
+	@Autowired
+	private Environment environment;
 
 	// create
 	@Override
@@ -31,46 +37,50 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderDTO readOrderById(int id) throws VivoduckException {
 		Optional<Order> orderOptional = orderRepository.findById(id);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
+		Order order = orderOptional
+				.orElseThrow(() -> new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND")));
 
 		return populateOrderDTO(order);
 	}
 
 	@Override
-	public OrderDTO readOrderByLocation(String location) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository.findByLocationStartsWithIgnoreCase(location);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByLocation(String location) throws VivoduckException {
+		List<Order> orders = orderRepository.findByLocationStartsWithIgnoreCase(location);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderByMachineInformation(String machineInformation) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository
-				.findByMachineInformationStartsWithIgnoreCase(machineInformation);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByMachineInformation(String machineInformation) throws VivoduckException {
+		List<Order> orders = orderRepository.findByMachineInformationStartsWithIgnoreCase(machineInformation);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderByVivonetPo(String vivonetPo) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository.findByVivonetPOStartsWithIgnoreCase(vivonetPo);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByVivonetPo(String vivonetPo) throws VivoduckException {
+		List<Order> orders = orderRepository.findByVivonetPOStartsWithIgnoreCase(vivonetPo);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderByScansourceOrderNumber(String scansourceOrderNumber) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository.findByScansourceOrderNumberStartsWith(scansourceOrderNumber);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByScansourceOrderNumber(String scansourceOrderNumber) throws VivoduckException {
+		List<Order> orders = orderRepository.findByScansourceOrderNumberStartsWith(scansourceOrderNumber);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderByScansourcePo(String scansourcePo) throws VivoduckException, NumberFormatException {
+	public List<OrderDTO> readOrderByScansourcePo(String scansourcePo) throws VivoduckException, NumberFormatException {
 
 		Integer scansourcePo_int;
 		try {
@@ -79,66 +89,72 @@ public class OrderServiceImpl implements OrderService {
 			throw new NumberFormatException("Order.INPUT_A_NUMBER");
 		}
 
-		Optional<Order> orderOptional = orderRepository.findByScansourcePoStartsWith(scansourcePo_int);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+		List<Order> orders = orderRepository.findByScansourcePoStartsWith(scansourcePo_int);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 
 	}
 
 	@Override
-	public OrderDTO readOrderByTrackingNumber(String trackingNumber) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository.findByTrackingNumberStartsWithIgnoreCase(trackingNumber);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByTrackingNumber(String trackingNumber) throws VivoduckException {
+		List<Order> orders = orderRepository.findByTrackingNumberStartsWithIgnoreCase(trackingNumber);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderByRemarkType(String remarkType) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository.findByRemarkType(remarkType);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByRemarkType(String remarkType) throws VivoduckException {
+		List<Order> orders = orderRepository.findByRemarkType(remarkType);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderBySerialNumber(String serialNumber) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository.findBySerialNumberStartsWithIgnoreCase(serialNumber);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderBySerialNumber(String serialNumber) throws VivoduckException {
+		List<Order> orders = orderRepository.findBySerialNumberStartsWithIgnoreCase(serialNumber);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderByCashDrawerSerialNumber(String cashDrawerSerialNumber) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository
-				.findByCashDrawerSerialNumberStartsWithIgnoreCase(cashDrawerSerialNumber);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByCashDrawerSerialNumber(String cashDrawerSerialNumber) throws VivoduckException {
+		List<Order> orders = orderRepository.findByCashDrawerSerialNumberStartsWithIgnoreCase(cashDrawerSerialNumber);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderByMacAddress(String macAddress) throws VivoduckException {
-		Optional<Order> orderOptional = orderRepository.findByMacAddressStartsWithIgnoreCase(macAddress);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+	public List<OrderDTO> readOrderByMacAddress(String macAddress) throws VivoduckException {
+		List<Order> orders = orderRepository.findByMacAddressStartsWithIgnoreCase(macAddress);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	@Override
-	public OrderDTO readOrderBySalesOrder(String salesOrder) throws VivoduckException {
+	public List<OrderDTO> readOrderBySalesOrder(String salesOrder) throws VivoduckException {
 		Integer salesOrder_int;
 		try {
 			salesOrder_int = Integer.parseInt(salesOrder);
 		} catch (NumberFormatException nfe) {
 			throw new NumberFormatException("Order.INPUT_A_NUMBER");
 		}
-		Optional<Order> orderOptional = orderRepository.findBySalesOrderStartsWith(salesOrder_int);
-		Order order = orderOptional.orElseThrow(() -> new VivoduckException("Order.ORDER_NOT_FOUND"));
-
-		return populateOrderDTO(order);
+		List<Order> orders = orderRepository.findBySalesOrderStartsWith(salesOrder_int);
+		if (orders.isEmpty()) {
+			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
+		}
+		return populateOrderDTO(orders);
 	}
 
 	// update
@@ -190,6 +206,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	// convenience methods
+	// transfer entity to dto
 	private OrderDTO populateOrderDTO(Order order) {
 		RemarkDTO remarkDTO = new RemarkDTO();
 		remarkDTO.setType(order.getRemarkType().getType());
@@ -210,6 +227,33 @@ public class OrderServiceImpl implements OrderService {
 		return orderDTO;
 	}
 
+	private List<OrderDTO> populateOrderDTO(List<Order> orders) {
+		List<OrderDTO> orderDTOList = new ArrayList<>();
+
+		orders.forEach((order) -> {
+			RemarkDTO remarkDTO = new RemarkDTO();
+			remarkDTO.setType(order.getRemarkType().getType());
+
+			OrderDTO orderDTO = new OrderDTO();
+			orderDTO.setLocation(order.getLocation());
+			orderDTO.setMachineInformation(order.getMachineInformation());
+			orderDTO.setVivonetPO(order.getVivonetPO());
+			orderDTO.setScansourceOrderNumber(order.getScansourceOrderNumber());
+			orderDTO.setScansourcePo(order.getScansourcePo());
+			orderDTO.setTrackingNumber(order.getTrackingNumber());
+			orderDTO.setRemarkType(remarkDTO);
+			orderDTO.setSerialNumber(order.getSerialNumber());
+			orderDTO.setCashDrawerSerialNumber(order.getCashDrawerSerialNumber());
+			orderDTO.setMacAddress(order.getMacAddress());
+			orderDTO.setSalesOrder(order.getSalesOrder());
+
+			orderDTOList.add(orderDTO);
+		});
+
+		return orderDTOList;
+	}
+
+	// transfer dto to entity
 	private void populateOrderEntityAndSave(OrderDTO orderDTO) {
 		Remark remark = new Remark();
 		remark.setType(orderDTO.getRemarkType().getType());

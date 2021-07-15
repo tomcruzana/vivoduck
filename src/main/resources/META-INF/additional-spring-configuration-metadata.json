@@ -38,5 +38,10 @@
     "name": "API.DELETE_SUCCESS",
     "type": "java.lang.String",
     "description": "A description for 'API.DELETE_SUCCESS'"
+  },
+  {
+    "name": "Order.INPUT_A_NUMBER",
+    "type": "java.lang.String",
+    "description": "A description for 'Order.INPUT_A_NUMBER'"
   }
 ]}

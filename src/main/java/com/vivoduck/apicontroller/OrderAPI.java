@@ -1,5 +1,7 @@
 package com.vivoduck.apicontroller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -37,9 +39,78 @@ public class OrderAPI {
 
 	// get mappings
 	@GetMapping(value = "/order/{id}")
-	public ResponseEntity<OrderDTO> getOrder(@PathVariable int id) throws Exception {
+	public ResponseEntity<OrderDTO> getOrderById(@PathVariable int id) throws Exception {
 		OrderDTO order = orderService.readOrderById(id);
 		return new ResponseEntity<>(order, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/location")
+	public ResponseEntity<List<OrderDTO>> getOrderByLocation(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByLocation(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/machineinformation")
+	public ResponseEntity<List<OrderDTO>> getOrderByMachineInformation(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByMachineInformation(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/vivonetpo")
+	public ResponseEntity<List<OrderDTO>> getOrderByVivonetPo(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByVivonetPo(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/scansourceordernumber")
+	public ResponseEntity<List<OrderDTO>> getOrderByScansourceOrderNumber(@RequestParam String search)
+			throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByScansourceOrderNumber(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	// TODO: fix bug. query fails if digit is more than 8, ex: 460063857
+	@GetMapping(value = "/order/scansourcepo")
+	public ResponseEntity<List<OrderDTO>> getOrderByScansourcePo(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByScansourcePo(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/trackingnumber")
+	public ResponseEntity<List<OrderDTO>> getOrderByTrackingNumber(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByTrackingNumber(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/remark")
+	public ResponseEntity<List<OrderDTO>> getOrderByRemarkType(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByRemarkType(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/serialnumber")
+	public ResponseEntity<List<OrderDTO>> getOrderBySerialNumber(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderBySerialNumber(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/cashdrawerserialnumber")
+	public ResponseEntity<List<OrderDTO>> getOrderByCashDrawerSerialNumber(@RequestParam String search)
+			throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByCashDrawerSerialNumber(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/macaddress")
+	public ResponseEntity<List<OrderDTO>> getOrderByMacAddress(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderByMacAddress(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/order/salesorder")
+	public ResponseEntity<List<OrderDTO>> getOrderBySalesOrder(@RequestParam String search) throws Exception {
+		List<OrderDTO> orders = orderService.readOrderBySalesOrder(search);
+		return new ResponseEntity<>(orders, HttpStatus.OK);
 	}
 
 	// patch mapping

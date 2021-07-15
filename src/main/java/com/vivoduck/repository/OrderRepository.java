@@ -1,5 +1,6 @@
 package com.vivoduck.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -26,31 +27,28 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Integ
 	// read
 	Optional<Order> findById(int id);
 
-	Optional<Order> findByLocationStartsWithIgnoreCase(String location);
+	List<Order> findByLocationStartsWithIgnoreCase(String location);
 
-	Optional<Order> findByMachineInformationStartsWithIgnoreCase(String machineInformation);
+	List<Order> findByMachineInformationStartsWithIgnoreCase(String machineInformation);
 
-	Optional<Order> findByVivonetPOStartsWithIgnoreCase(String vivonetPO);
+	List<Order> findByVivonetPOStartsWithIgnoreCase(String vivonetPO);
 
-	Optional<Order> findByScansourceOrderNumberStartsWith(String ScansourceOrderNumber);
+	List<Order> findByScansourceOrderNumberStartsWith(String ScansourceOrderNumber);
 
-	Optional<Order> findByScansourcePoStartsWith(Integer scanSourcePO);
+	List<Order> findByScansourcePoStartsWith(Integer scanSourcePO);
 
-	Optional<Order> findByTrackingNumberStartsWithIgnoreCase(String trackingNumber);
-
-	// TODO: we might not use this
-	Optional<Order> findByTrackingNumberIsNull();
+	List<Order> findByTrackingNumberStartsWithIgnoreCase(String trackingNumber);
 
 	@Query(value = "SELECT * FROM product_order WHERE remark_type = :remarkType", nativeQuery = true)
-	Optional<Order> findByRemarkType(@Param("remarkType") String remarkType);
+	List<Order> findByRemarkType(@Param("remarkType") String remarkType);
 
-	Optional<Order> findBySerialNumberStartsWithIgnoreCase(String serialNumber);
+	List<Order> findBySerialNumberStartsWithIgnoreCase(String serialNumber);
 
-	Optional<Order> findByCashDrawerSerialNumberStartsWithIgnoreCase(String cashDrawerSerialNumber);
+	List<Order> findByCashDrawerSerialNumberStartsWithIgnoreCase(String cashDrawerSerialNumber);
 
-	Optional<Order> findByMacAddressStartsWithIgnoreCase(String macAddress);
+	List<Order> findByMacAddressStartsWithIgnoreCase(String macAddress);
 
-	Optional<Order> findBySalesOrderStartsWith(Integer salesOrder);
+	List<Order> findBySalesOrderStartsWith(Integer salesOrder);
 
 	// update
 	/* use the read methods and save() method to persist data */

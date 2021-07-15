@@ -11,6 +11,8 @@ public interface OrderService {
 	public void createOrder(OrderDTO orderDTO) throws VivoduckException;
 
 	// read
+	public Integer countTotalOrders() throws VivoduckException;
+	
 	public OrderDTO readOrderById(int id) throws VivoduckException;
 
 	public List<OrderDTO> readOrderByLocation(String location) throws VivoduckException;

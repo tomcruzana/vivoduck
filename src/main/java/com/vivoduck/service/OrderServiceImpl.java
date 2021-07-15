@@ -35,6 +35,11 @@ public class OrderServiceImpl implements OrderService {
 
 	// read
 	@Override
+	public Integer countTotalOrders() throws VivoduckException {
+		return orderRepository.countTotalOrders();
+	}
+	
+	@Override
 	public OrderDTO readOrderById(int id) throws VivoduckException {
 		Optional<Order> orderOptional = orderRepository.findById(id);
 		Order order = orderOptional
@@ -150,7 +155,7 @@ public class OrderServiceImpl implements OrderService {
 		} catch (NumberFormatException nfe) {
 			throw new NumberFormatException("Order.INPUT_A_NUMBER");
 		}
-		List<Order> orders = orderRepository.findBySalesOrderStartsWith(salesOrder_int);
+		List<Order> orders = orderRepository.findBySalesOrderStartsWith (salesOrder_int);
 		if (orders.isEmpty()) {
 			throw new VivoduckException(environment.getProperty("Order.ORDER_NOT_FOUND"));
 		}

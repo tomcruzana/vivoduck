@@ -7,5 +7,7 @@ public class VivoduckException extends Exception {
 	public VivoduckException(String message) {
 		super(message);
 	}
+	
+	
 
 }

@@ -38,6 +38,12 @@ public class OrderAPI {
 	}
 
 	// get mappings
+	@GetMapping(value = "/order/count")
+	public ResponseEntity<String> getTotalOrders() throws Exception {
+		Integer countTotalOrders = orderService.countTotalOrders();
+		return new ResponseEntity<>(String.valueOf(countTotalOrders), HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/order/{id}")
 	public ResponseEntity<OrderDTO> getOrderById(@PathVariable int id) throws Exception {
 		OrderDTO order = orderService.readOrderById(id);

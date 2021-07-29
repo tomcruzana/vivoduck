@@ -41,7 +41,7 @@
           src="./assets/v_logo.png"
           width="30"
           height="30"
-          class="d-inline-block align-top "
+          class="d-inline-block align-top"
           alt="vivo-logo"
         />
         Vivoduck
@@ -73,11 +73,37 @@
         aria-hidden="true"
       >
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <h1>Lorem</h1>
-            <p>ipsum</p>
+          <div class="modal-content p-5">
+            <div class="my-1">
+              <label for="inlineFormCustomSelect"
+                >Search by:</label
+              >
+              <select class="custom-select" id="inlineFormCustomSelect">
+                <option selected>Choose...</option>
+                <option value="1">Id</option>
+                <option value="2">Location</option>
+                <option value="3">Machine Information</option>
+                <option value="4">Vivonet PO</option>
+                <option value="5">Scansource Order NUmber</option>
+                <option value="6">Scansource PO</option>
+                <option value="7">Tracking Number</option>
+                <option value="8">Remark Type</option>
+                <option value="9">Serial Number</option>
+                <option value="10">Cash Drawer Serial Number</option>
+                <option value="11">MAC Address</option>
+                <option value="12">Sales Order</option>
+              </select>
 
-            <button class="btn btn-3 btn-sep icon-delete">Delete</button>
+              <div class="form-group mt-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="searchInput"
+                  placeholder="Search here.."
+                />
+              </div>
+            </div>
+            <button class="btn btn-warning" type="button">Search</button>
           </div>
         </div>
       </div>

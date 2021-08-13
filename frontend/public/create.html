@@ -59,6 +59,7 @@
             class="form-control"
             id="locationInput"
             placeholder="The Location.."
+            required
           />
         </div>
 
@@ -69,6 +70,7 @@
             class="form-control"
             id="machineInformationInput"
             placeholder="The machine information.."
+            required
           />
         </div>
 
@@ -79,6 +81,7 @@
             class="form-control"
             id="vivonetPoInput"
             placeholder="Vivonet purchase order.."
+            required
           />
         </div>
 
@@ -89,6 +92,7 @@
             class="form-control"
             id="scansourceOrderInput"
             placeholder="Scansource order number.."
+            required
           />
         </div>
 
@@ -99,6 +103,7 @@
             class="form-control"
             id="scansourcePoInput"
             placeholder="Scansource purchase order.."
+            required
           />
         </div>
 
@@ -114,7 +119,7 @@
 
         <div class="form-group">
           <label for="remarksControlSelect">Remarks</label>
-          <select multiple class="form-control" id="remarksControlSelect">
+          <select multiple class="form-control" id="remarksControlSelect" required>
             <option>Staging</option>
             <option>Non-Staging</option>
           </select>
@@ -127,6 +132,7 @@
             class="form-control"
             id="serialNumberInput"
             placeholder="The POS serial number.."
+            required
           />
         </div>
 
@@ -137,6 +143,7 @@
             class="form-control"
             id="cashDrawerInput"
             placeholder="The cash drawer serial number.."
+            required
           />
         </div>
 
@@ -147,6 +154,7 @@
             class="form-control"
             id="macAddressInput"
             placeholder="The POS MAC address information.."
+            required
           />
         </div>
 
@@ -157,6 +165,7 @@
             class="form-control"
             id="salesOrderInput"
             placeholder="The sales order number.."
+            required
           />
         </div>
 
@@ -176,7 +185,7 @@
           Generate Canned Response
         </button>
         <br />
-        <button type="submit" class="btn btn-secondary mb-5">Reset</button>
+        <button type="button" class="btn btn-secondary mb-5">Reset</button>
         <button type="submit" class="btn btn-success mb-5">Submit</button>
         <button type="button" class="btn btn-secondary btn-lg btn-block">
           Print

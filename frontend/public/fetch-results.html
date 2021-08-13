@@ -30,7 +30,7 @@
     <!-- custom css -->
     <link rel="stylesheet" href="./styles/btn-icons.css" />
 
-    <title>Vivoduck - Home</title>
+    <title>Vivoduck - Search Results</title>
   </head>
   <body>
     <!-- navbar -->
@@ -51,66 +51,10 @@
 
     <!-- container -->
     <div class="container-fluid mt-3">
-      <button class="btn_custom btn-1 btn-sep icon-create">Create</button>
-
-      <button
-        type="button"
-        class="btn_custom btn-4 btn-sep icon-fetch bg-warning"
-        data-toggle="modal"
-        data-target=".bd-example-modal-lg"
-      >
-        Fetch
-      </button>
-
-      <button class="btn_custom btn-2 btn-sep icon-convert">Convert</button>
-
-      <!-- fetch modal -->
-      <div
-        class="modal fade bd-example-modal-lg"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="myLargeModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content p-5">
-            <div class="my-1">
-              <label for="inlineFormCustomSelect"
-                >Search by:</label
-              >
-              <select class="custom-select" id="inlineFormCustomSelect">
-                <option selected>Choose...</option>
-                <option value="1">Id</option>
-                <option value="2">Location</option>
-                <option value="3">Machine Information</option>
-                <option value="4">Vivonet PO</option>
-                <option value="5">Scansource Order NUmber</option>
-                <option value="6">Scansource PO</option>
-                <option value="7">Tracking Number</option>
-                <option value="8">Remark Type</option>
-                <option value="9">Serial Number</option>
-                <option value="10">Cash Drawer Serial Number</option>
-                <option value="11">MAC Address</option>
-                <option value="12">Sales Order</option>
-              </select>
-
-              <div class="form-group mt-4">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="searchInput"
-                  placeholder="Search here.."
-                />
-              </div>
-            </div>
-            <button id="searchBtn" class="btn btn-warning" type="button">Search</button>
-          </div>
-        </div>
-      </div>
+      pagination works...
     </div>
 
     <!-- Optional JavaScript -->
-    <script src="./scripts/index.js"></script>
     <script src="./scripts/time.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
